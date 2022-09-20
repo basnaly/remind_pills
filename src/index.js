@@ -1,14 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import AppRemindPills from './AppRemindPills';
+
+import "bootstrap/dist/css/bootstrap.css";
+import { applyMiddleware, compose } from "redux";
+import { legacy_createStore as createStore } from "redux";
+import { Provider } from "react-redux";
+import { createLogger } from "redux-logger";
+import thunk from "redux-thunk";
+import AllReducers from "./Body/Reducers/AllReducers";
+
+
+const logger = createLogger({});
+
+let store;
+
+if (window.navigator.userAgent.includes("Chrome")) {
+	store = createStore(
+		AllReducers,
+		compose(
+			applyMiddleware(logger, thunk),
+			window.__REDUX_DEVTOOLS_EXTENSION__ &&
+				window.__REDUX_DEVTOOLS_EXTENSION__()
+		)
+	);
+} else {
+	store = createStore(AllReducers, compose(applyMiddleware(logger, thunk)));
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider store={store}>
+			<AppRemindPills />
+		</Provider>
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
