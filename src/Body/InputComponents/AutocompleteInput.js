@@ -11,6 +11,7 @@ const AutocompleteInput = ({options, autocompleteLabel,
       disablePortal
       id="combo-box-demo"
       size='small'
+      color='primary'
       options={options}
       value={value}
       disabled={disable}

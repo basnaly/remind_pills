@@ -20,6 +20,7 @@ const TextFieldInput = ({textLabel = "Add name", value = '', setValue = ''}) => 
     >
       <TextField 
         size='small'
+        color='primary'
         id="outlined-basic" 
         label={textLabel} 
         variant="outlined" 
