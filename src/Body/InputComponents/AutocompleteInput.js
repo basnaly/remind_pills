@@ -2,7 +2,8 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const AutocompleteInput = ({options, autocompleteLabel}) => {
+const AutocompleteInput = ({options, autocompleteLabel, 
+    value, setValue, inputValue, setInputValue, disable = false}) => {
 
   return (
 
@@ -11,6 +12,15 @@ const AutocompleteInput = ({options, autocompleteLabel}) => {
       id="combo-box-demo"
       size='small'
       options={options}
+      value={value}
+      disabled={disable}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
+      inputValue={inputValue}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
       sx={{ width: 200, m: 1 }}
       renderInput={(params) => 
 

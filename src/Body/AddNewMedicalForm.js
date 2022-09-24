@@ -1,34 +1,98 @@
-import React from 'react';
-import AutocompleteInput from './InputComponents/AutocompleteInput';
-import { FORM, FREQUENCY, INTERVAL, UNIT } from '../constants';
+import React, { useState } from "react";
 
-import TextAreaInput from './InputComponents/TextAreaInput';
-import TextFieldInput from './InputComponents/TextFieldInput';
+import { FORM, FREQUENCY, INTERVAL, UNIT } from "../constants";
 
+import AutocompleteInput from "./InputComponents/AutocompleteInput";
+import TextAreaInput from "./InputComponents/TextAreaInput";
+import TextFieldInput from "./InputComponents/TextFieldInput";
 
 const AddNewMedicalForm = () => {
 
-  return (
+	const [name, setName] = useState('');
 
-    <div className="d-flex flex-column align-items-center overflow-auto">
-        <TextFieldInput textLabel={"Add name"} />
+	const [form, setForm] = useState(FORM[0]);
+	const [inputForm, setInputForm] = useState('');
 
-        <AutocompleteInput options={FORM} autocompleteLabel={'Form'} />
+	const [strength, setStrength] = useState('');
 
-        <TextFieldInput textLabel={"Strength"} />
+	const [unit, setUnit] = useState(UNIT[0]);
+	const [inputUnit, setInputUnit] = useState('');
 
-        <AutocompleteInput options={UNIT} autocompleteLabel={'Unit'} />
+	const [amount, setAmount] = useState('');
 
-        <TextFieldInput textLabel={"Pack contains amount"} />
+	const [frequency, setFrequency] = useState(FREQUENCY[0]);
+	const [inputFrequency, setInputFrequency] = useState('');
 
-        <AutocompleteInput options={FREQUENCY} autocompleteLabel={'Frequency'} />
+	const [intervalPill, setIntervalPill] = useState(INTERVAL[0]);
+	const [inputIntervalPill, setInputIntervalPill] = useState('');
 
-        <AutocompleteInput options={INTERVAL} autocompleteLabel={'Interval'} />
+	const [note, setNote] = useState('');
 
-        <TextAreaInput />
-      
-    </div>
-  )
-}
+	console.log(name, form, strength, unit, amount, frequency, intervalPill, note);
+
+	return (
+		<div className="d-flex flex-column align-items-center overflow-auto">
+			<TextFieldInput
+				textLabel={"Add name"}
+				value={name}
+				setValue={setName}
+			/>
+
+			<AutocompleteInput
+				options={FORM}
+				autocompleteLabel={"Form"}
+				value={form}
+				setValue={setForm}
+				inputValue={inputForm}
+				setInputValue={setInputForm}
+			/>
+
+			<TextFieldInput
+				textLabel={"Strength"}
+				value={strength}
+				setValue={setStrength}
+			/>
+
+			<AutocompleteInput 
+				options={UNIT} 
+				autocompleteLabel={"Unit"} 
+				value={unit}
+				setValue={setUnit}
+				inputValue={inputUnit}
+				setInputValue={setInputUnit}
+			/>
+
+			<TextFieldInput 
+				textLabel={"Pack contains amount"} 
+				value={amount}
+				setValue={setAmount}
+			/>
+
+			<AutocompleteInput
+				options={FREQUENCY}
+				autocompleteLabel={"Frequency"}
+				value={frequency}
+				setValue={setFrequency}
+				inputValue={inputFrequency}
+				setInputValue={setInputFrequency}
+				disable={true}
+			/>
+
+			<AutocompleteInput
+				options={INTERVAL}
+				autocompleteLabel={"Interval"}
+				value={intervalPill}
+				setValue={setIntervalPill}
+				inputValue={inputIntervalPill}
+				setInputValue={setInputIntervalPill}
+			/>
+
+			<TextAreaInput 
+				value={note}
+				setValue={setNote}
+			/>
+		</div>
+	);
+};
 
 export default AddNewMedicalForm;

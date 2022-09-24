@@ -2,7 +2,11 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-const TextFieldInput = ({textLabel = "Add name"}) => {
+const TextFieldInput = ({textLabel = "Add name", value = '', setValue = ''}) => {
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  }
 
   return (
 
@@ -19,6 +23,8 @@ const TextFieldInput = ({textLabel = "Add name"}) => {
         id="outlined-basic" 
         label={textLabel} 
         variant="outlined" 
+        value={value}
+        onChange={handleChange}
       />
     </Box>
   )
