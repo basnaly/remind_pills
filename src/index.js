@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
 
-import AppRemindPills from './AppRemindPills';
+import AppRemindPills from "./AppRemindPills";
 
 import "bootstrap/dist/css/bootstrap.css";
 import { applyMiddleware, compose } from "redux";
@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
 import AllReducers from "./Body/Reducers/AllReducers";
-
+import ThemeContextProvider from "./styles/ThemeContext";
 
 const logger = createLogger({});
 
@@ -30,11 +30,13 @@ if (window.navigator.userAgent.includes("Chrome")) {
 	store = createStore(AllReducers, compose(applyMiddleware(logger, thunk)));
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<AppRemindPills />
+			<ThemeContextProvider>
+				<AppRemindPills />
+			</ThemeContextProvider>
 		</Provider>
 	</React.StrictMode>
 );

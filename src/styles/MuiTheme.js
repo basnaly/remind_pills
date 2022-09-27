@@ -1,18 +1,13 @@
-import { createTheme } from '@mui/material/styles';
 
-export const myTheme = createTheme({
-    palette: {
-        primary: {
-            main: '#ffa64d'
-        }
-    },
+export const myTheme = {
+    
     components: {
         MuiInputBase: {
             styleOverrides: {
                 input: {
                     fontFamily: "'Acme', sans-serif",
                     fontSize: '16px',
-                    color: 'black',
+        
                 }
             }
         },
@@ -27,11 +22,27 @@ export const myTheme = createTheme({
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    color: 'black',
                     fontFamily: "'Acme', sans-serif",
                     fontSize: '14px',
                 }
             }
         },
+        MuiAutocomplete: {
+            styleOverrides: {
+                paper: {
+                    fontFamily: "'Acme', sans-serif",
+                    fontSize: '14px',
+                }
+            }
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    "&.Mui-selected": {
+                        textDecoration: 'underline',
+                    },
+                }
+            }
+        },
     }
-})
+}

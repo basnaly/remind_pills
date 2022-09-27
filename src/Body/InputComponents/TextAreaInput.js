@@ -1,12 +1,13 @@
-import React from "react";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import React, { useContext } from "react";
 import { TextareaAutosizeStyled } from "../../styles/MuiStyles";
+
+import { ThemeContext } from "../../styles/ThemeContext";
 
 const TextAreaInput = ({ value = "", setValue = "" }) => {
 	
-	const handleChange = (event) => {
-		setValue(event.target.value);
-	};
+	const handleChange = event => setValue(event.target.value);
+
+	const { currentTheme } = useContext(ThemeContext);
 
 	return (
 		<TextareaAutosizeStyled
@@ -16,6 +17,10 @@ const TextAreaInput = ({ value = "", setValue = "" }) => {
 			placeholder="Notes"
 			value={value}
 			onChange={handleChange}
+			style={{
+				backgroundColor: currentTheme.textareaBackground,
+				color: currentTheme.textColor,
+			}}
 		/>
 	);
 };

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AddNewPill } from "../Actions/PillAction";
 
 import { FORM, FREQUENCY, INTERVAL, UNIT } from "../constants";
 import { GrayButton } from "../styles/MuiStyles";
@@ -8,6 +10,7 @@ import TextAreaInput from "./InputComponents/TextAreaInput";
 import TextFieldInput from "./InputComponents/TextFieldInput";
 
 const AddNewMedicalForm = () => {
+
 	const [name, setName] = useState("");
 
 	const [form, setForm] = useState(FORM[0]);
@@ -28,6 +31,8 @@ const AddNewMedicalForm = () => {
 
 	const [note, setNote] = useState("");
 
+	const dispatch = useDispatch();
+
 	console.log(
 		name,
 		form,
@@ -42,6 +47,7 @@ const AddNewMedicalForm = () => {
 	return (
 		<div className="d-flex flex-column align-items-center overflow-auto">
 			<TextFieldInput
+				className="mt-2"
 				textLabel={"Add name"}
 				value={name}
 				setValue={setName}
@@ -98,7 +104,11 @@ const AddNewMedicalForm = () => {
 
 			<TextAreaInput value={note} setValue={setNote} />
 
-			<GrayButton variant={"outlined"} className="mt-2">
+			<GrayButton 
+				variant={"outlined"} 
+				className="mt-2"
+				onClick={() => dispatch(AddNewPill(name, form, strength, unit, amount, intervalPill, note))}
+			>
 				Submit
 			</GrayButton>
 		</div>
