@@ -12,6 +12,11 @@ export const FREQUENCY = [
 ]
 
 export const INTERVAL = [
-    '18 hours', '1 day', '36 hours', '2 days', '3 days', '4 days', 
-    '5 days', '6 days', '7 days'
+    '1 day', '1.5 days', '2 days', '3 days', '4 days', '5 days', 
+    '6 days', '7 days', '8 days', '9 days', '10 days'
+]
+
+export const WEEK_DAYS = [
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 
+    'Thursday', 'Friday', 'Saturday'
 ]

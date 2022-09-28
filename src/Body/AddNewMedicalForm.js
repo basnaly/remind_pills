@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AddNewPill } from "../Actions/PillAction";
+import { useDispatch, useSelector } from "react-redux";
+import { ChangeNewMedicineAmount, ChangeNewMedicineForm, ChangeNewMedicineFrequency, ChangeNewMedicineInterval, ChangeNewMedicineName, ChangeNewMedicineNote, ChangeNewMedicineStrength, ChangeNewMedicineUnit, ChangeNewMedicineWeekDay } from "../Actions/PillAction";
 
-import { FORM, FREQUENCY, INTERVAL, UNIT } from "../constants";
-import { GrayButton } from "../styles/MuiStyles";
+import { FORM, FREQUENCY, INTERVAL, UNIT, WEEK_DAYS } from "../constants";
 
 import AutocompleteInput from "./InputComponents/AutocompleteInput";
 import TextAreaInput from "./InputComponents/TextAreaInput";
@@ -11,71 +10,104 @@ import TextFieldInput from "./InputComponents/TextFieldInput";
 
 const AddNewMedicalForm = () => {
 
-	const [name, setName] = useState("");
-
-	const [form, setForm] = useState(FORM[0]);
-	const [inputForm, setInputForm] = useState("");
-
-	const [strength, setStrength] = useState("");
-
-	const [unit, setUnit] = useState(UNIT[0]);
-	const [inputUnit, setInputUnit] = useState("");
-
-	const [amount, setAmount] = useState("");
-
-	const [frequency, setFrequency] = useState(FREQUENCY[0]);
-	const [inputFrequency, setInputFrequency] = useState("");
-
-	const [intervalPill, setIntervalPill] = useState(INTERVAL[0]);
-	const [inputIntervalPill, setInputIntervalPill] = useState("");
-
-	const [note, setNote] = useState("");
-
 	const dispatch = useDispatch();
 
-	console.log(
-		name,
-		form,
-		strength,
-		unit,
-		amount,
-		frequency,
-		intervalPill,
-		note
-	);
+	const name = useSelector(state => state?.med?.newMedicine?.name);
+	const setName = newName => dispatch(ChangeNewMedicineName(newName));
+
+	const form = useSelector(state => state?.med?.newMedicine?.form);
+	const setForm = newForm => dispatch(ChangeNewMedicineForm(newForm));
+	const [inputForm, setInputForm] = useState("");
+
+	const strength = useSelector(state => state?.med?.newMedicine?.strength);
+	const setStrength = newStrength => dispatch(ChangeNewMedicineStrength(newStrength));
+
+	const unit = useSelector(state => state?.med?.newMedicine?.unit);
+	const setUnit = newUnit => dispatch(ChangeNewMedicineUnit(newUnit));
+	const [inputUnit, setInputUnit] = useState("");
+
+	const amount = useSelector(state => state?.med?.newMedicine?.amount);
+	const setAmount = newAmount => dispatch(ChangeNewMedicineAmount(newAmount));
+
+	const frequency = useSelector(state => state?.med?.newMedicine?.frequency);
+	const setFrequency = newFrequency => dispatch(ChangeNewMedicineFrequency(newFrequency));
+	const [inputFrequency, setInputFrequency] = useState("");
+
+	const interval = useSelector(state => state?.med?.newMedicine?.interval);
+	const setInterval = newInterval => dispatch(ChangeNewMedicineInterval(newInterval));
+	const [inputInterval, setInputInterval] = useState("");
+
+	const weekDay = useSelector(state => state?.med?.newMedicine?.weekDay);
+	const setWeekDay = newWeekDay => dispatch(ChangeNewMedicineWeekDay(newWeekDay));
+	const [inputWeekDay, setInputWeekDay] = useState("");
+
+	const note = useSelector(state => state?.med?.newMedicine?.note);
+	const setNote = newNote => dispatch(ChangeNewMedicineNote(newNote));
+
+	let options = (<AutocompleteInput
+		options={INTERVAL}
+		autocompleteLabel={"Interval"}
+		value={interval}
+		setValue={setInterval}
+		inputValue={inputInterval}
+		setInputValue={setInputInterval}
+	/>
+	)
+
+	if (frequency === FREQUENCY[1]) {
+		options = (<AutocompleteInput
+			options={WEEK_DAYS}
+			autocompleteLabel={"Days of week"}
+			value={weekDay}
+			setValue={setWeekDay}
+			inputValue={inputWeekDay}
+			setInputValue={setInputWeekDay}
+		/>
+		)
+	} else if (frequency === FREQUENCY[2]) {
+		options = ''
+	}
 
 	return (
 		<div className="d-flex flex-column align-items-center overflow-auto">
-			<TextFieldInput
-				className="mt-2"
-				textLabel={"Add name"}
-				value={name}
-				setValue={setName}
-			/>
+			
+			<div className="d-flex align-items-center overflow-auto">
+				<TextFieldInput
+					className="mt-2"
+					textLabel={"Add name"}
+					value={name}
+					setValue={setName}
+				/>
 
-			<AutocompleteInput
-				options={FORM}
-				autocompleteLabel={"Form"}
-				value={form}
-				setValue={setForm}
-				inputValue={inputForm}
-				setInputValue={setInputForm}
-			/>
+				<AutocompleteInput
+					options={FORM}
+					autocompleteLabel={"Form"}
+					value={form}
+					setValue={setForm}
+					inputValue={inputForm}
+					setInputValue={setInputForm}
+				/>
+			</div>
 
-			<TextFieldInput
-				textLabel={"Strength"}
-				value={strength}
-				setValue={setStrength}
-			/>
+			<div className="d-flex align-items-center overflow-auto">
 
-			<AutocompleteInput
-				options={UNIT}
-				autocompleteLabel={"Unit"}
-				value={unit}
-				setValue={setUnit}
-				inputValue={inputUnit}
-				setInputValue={setInputUnit}
-			/>
+				<TextFieldInput
+					textLabel={"Strength"}
+					value={strength}
+					type="number"
+					setValue={setStrength}
+				/>
+
+				<AutocompleteInput
+					options={UNIT}
+					autocompleteLabel={"Unit"}
+					value={unit}
+					setValue={setUnit}
+					inputValue={inputUnit}
+					setInputValue={setInputUnit}
+				/>
+
+			</div>
 
 			<TextFieldInput
 				textLabel={"Pack contains amount"}
@@ -83,34 +115,24 @@ const AddNewMedicalForm = () => {
 				setValue={setAmount}
 			/>
 
-			<AutocompleteInput
-				options={FREQUENCY}
-				autocompleteLabel={"Frequency"}
-				value={frequency}
-				setValue={setFrequency}
-				inputValue={inputFrequency}
-				setInputValue={setInputFrequency}
-				disable={true}
-			/>
+			<div className="d-flex align-items-center overflow-auto">
 
-			<AutocompleteInput
-				options={INTERVAL}
-				autocompleteLabel={"Interval"}
-				value={intervalPill}
-				setValue={setIntervalPill}
-				inputValue={inputIntervalPill}
-				setInputValue={setInputIntervalPill}
-			/>
+				<AutocompleteInput
+					options={FREQUENCY}
+					autocompleteLabel={"Frequency"}
+					value={frequency}
+					setValue={setFrequency}
+					inputValue={inputFrequency}
+					setInputValue={setInputFrequency}
+					//disable={true}
+				/>
+
+				{options}
+			
+			</div>
 
 			<TextAreaInput value={note} setValue={setNote} />
 
-			<GrayButton 
-				variant={"outlined"} 
-				className="mt-2"
-				onClick={() => dispatch(AddNewPill(name, form, strength, unit, amount, intervalPill, note))}
-			>
-				Submit
-			</GrayButton>
 		</div>
 	);
 };

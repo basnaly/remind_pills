@@ -29,7 +29,7 @@ const AutocompleteInput = ({
 				setInputValue(newInputValue);
 			}}
 			sx={{
-				width: 200,
+				width: 230,
 				m: 1,
 			}}
 

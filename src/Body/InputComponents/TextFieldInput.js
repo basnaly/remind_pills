@@ -6,6 +6,7 @@ const TextFieldInput = ({
 	textLabel = "Add name",
 	value = "",
 	setValue = "",
+	type,
 }) => {
 	
 	const handleChange = (event) => setValue(event.target.value);
@@ -14,7 +15,7 @@ const TextFieldInput = ({
 		<Box
 			component="form"
 			sx={{
-				"& > :not(style)": { m: 1, width: 200 },
+				"& > :not(style)": { m: 1, width: 230 },
 			}}
 			noValidate
 			autoComplete="off"
@@ -24,6 +25,7 @@ const TextFieldInput = ({
 				color="primary"
 				id="outlined-basic"
 				label={textLabel}
+				type={type}
 				variant="outlined"
 				value={value}
 				onChange={handleChange}

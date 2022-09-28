@@ -19,12 +19,32 @@ export const GrayButton = styled(Button)({
 	fontFamily: "'Acme', sans-serif",
 });
 
+export const YellowButton = styled(Button)({
+	textTransform: "none",
+	color: "yellow",
+	border: "1px solid yellow",
+	fontSize: "16px",
+	backgroundColor: "lightgray",
+	padding: "0 5px",
+	fontFamily: "'Acme', sans-serif",
+});
+
+export const OrangeButton = styled(Button)({
+	textTransform: "none",
+	color: "#ff6600",
+	border: "1px solid black",
+	fontSize: "16px",
+	backgroundColor: "lightgray",
+	padding: "0 5px",
+	fontFamily: "'Acme', sans-serif",
+});
+
 export const MenuItemStyled = styled(MenuItem)({
 	fontFamily: "'Acme', sans-serif",
 });
 
 export const TextareaAutosizeStyled = styled(TextareaAutosize)(({ theme, style }) => ({
-	width: 200,
+	width: 300,
 	fontFamily: "'Acme', sans-serif",
 	fontSize: "16px",
 	padding: '5px 10px',

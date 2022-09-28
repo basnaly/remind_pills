@@ -12,6 +12,7 @@ import { themeLight } from "./styles/MuiThemeLight";
 
 import { createTheme } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
+import MainScreen from "./Body/MainScreen";
 
 const AppRemindPills = () => {
 
@@ -29,7 +30,7 @@ const AppRemindPills = () => {
 				<Router>
 					<HeaderComponent />
 
-					<AddNewMedicalForm />
+					<MainScreen />
 				</Router>
 			</div>
 		</ThemeProvider>
