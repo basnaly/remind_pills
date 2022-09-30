@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ChangeNewMedicineAmount, ChangeNewMedicineForm, ChangeNewMedicineFrequency, ChangeNewMedicineInterval, ChangeNewMedicineName, ChangeNewMedicineNote, ChangeNewMedicineStrength, ChangeNewMedicineUnit, ChangeNewMedicineWeekDay } from "../Actions/PillAction";
+import { ChangeNewMedicineAmount, ChangeNewMedicineForm, 
+	ChangeNewMedicineFrequency, ChangeNewMedicineInterval, 
+	ChangeNewMedicineName, ChangeNewMedicineNote, 
+	ChangeNewMedicineQuantity, ChangeNewMedicineStrength, 
+	ChangeNewMedicineUnit, ChangeNewMedicineWeekDay } 
+	from "../Actions/MedicineAction";
 
 import { FORM, FREQUENCY, INTERVAL, UNIT, WEEK_DAYS } from "../constants";
 
@@ -19,6 +24,9 @@ const AddNewMedicalForm = () => {
 	const setForm = newForm => dispatch(ChangeNewMedicineForm(newForm));
 	const [inputForm, setInputForm] = useState("");
 
+	const quantity = useSelector(state => state?.med?.newMedicine?.quantity);
+	const setQuantity = newQuantity => dispatch(ChangeNewMedicineQuantity(newQuantity));
+
 	const strength = useSelector(state => state?.med?.newMedicine?.strength);
 	const setStrength = newStrength => dispatch(ChangeNewMedicineStrength(newStrength));
 
@@ -26,8 +34,8 @@ const AddNewMedicalForm = () => {
 	const setUnit = newUnit => dispatch(ChangeNewMedicineUnit(newUnit));
 	const [inputUnit, setInputUnit] = useState("");
 
-	const amount = useSelector(state => state?.med?.newMedicine?.amount);
-	const setAmount = newAmount => dispatch(ChangeNewMedicineAmount(newAmount));
+	const packAmount = useSelector(state => state?.med?.newMedicine?.packAmount);
+	const setPackAmount = newPackAmount => dispatch(ChangeNewMedicineAmount(newPackAmount));
 
 	const frequency = useSelector(state => state?.med?.newMedicine?.frequency);
 	const setFrequency = newFrequency => dispatch(ChangeNewMedicineFrequency(newFrequency));
@@ -70,15 +78,15 @@ const AddNewMedicalForm = () => {
 
 	return (
 		<div className="d-flex flex-column align-items-center overflow-auto">
-			
-			<div className="d-flex align-items-center overflow-auto">
-				<TextFieldInput
-					className="mt-2"
+
+			<TextFieldInput
 					textLabel={"Add name"}
 					value={name}
 					setValue={setName}
-				/>
-
+			/>
+			
+			<div className="d-flex align-items-center overflow-auto">
+				
 				<AutocompleteInput
 					options={FORM}
 					autocompleteLabel={"Form"}
@@ -87,6 +95,15 @@ const AddNewMedicalForm = () => {
 					inputValue={inputForm}
 					setInputValue={setInputForm}
 				/>
+
+				<TextFieldInput
+					//className="mt-2"
+					textLabel={"Quantity"}
+					value={quantity}
+					type="number"
+					setValue={setQuantity}
+				/>
+
 			</div>
 
 			<div className="d-flex align-items-center overflow-auto">
@@ -111,8 +128,9 @@ const AddNewMedicalForm = () => {
 
 			<TextFieldInput
 				textLabel={"Pack contains amount"}
-				value={amount}
-				setValue={setAmount}
+				value={packAmount}
+				type="number"
+				setValue={setPackAmount}
 			/>
 
 			<div className="d-flex align-items-center overflow-auto">

@@ -1,4 +1,4 @@
-import { styled, TextareaAutosize } from "@mui/material";
+import { DialogTitle, styled, TextareaAutosize } from "@mui/material";
 import { Button, Box } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -15,7 +15,7 @@ export const GrayButton = styled(Button)({
 	border: "1px solid black",
 	fontSize: "16px",
 	backgroundColor: "lightgray",
-	padding: "0 5px",
+	padding: "2px 8px",
 	fontFamily: "'Acme', sans-serif",
 });
 
@@ -29,15 +29,15 @@ export const YellowButton = styled(Button)({
 	fontFamily: "'Acme', sans-serif",
 });
 
-export const OrangeButton = styled(Button)({
+export const MedBoxButton = styled(Button)(({ theme, style }) => ({
 	textTransform: "none",
-	color: "#ff6600",
-	border: "1px solid black",
+	color: theme.palette.secondary.main,
+	border: `1px solid ${theme.palette.secondary.main}`,
 	fontSize: "16px",
-	backgroundColor: "lightgray",
+	backgroundColor: theme.palette.third.main,
 	padding: "0 5px",
 	fontFamily: "'Acme', sans-serif",
-});
+}));
 
 export const MenuItemStyled = styled(MenuItem)({
 	fontFamily: "'Acme', sans-serif",
@@ -73,4 +73,34 @@ export const TextareaAutosizeStyled = styled(TextareaAutosize)(({ theme, style }
 	"&::placeholder": {
 		color: style.color,
 	},
+}));
+
+export const DialogTitleStyled = styled(DialogTitle)(({ theme, style }) => ({
+	fontFamily: "'Acme', sans-serif",
+	fontSize: "20px",
+	color: theme.palette.primary.main
+}));
+
+export const StartingDivStyled = styled('div')(({ theme, style }) => ({
+	fontFamily: "'Acme', sans-serif",
+	fontSize: "20px",
+	color: theme.palette.primary.main,
+}));
+
+export const BoxStyled = styled(Box)(({ theme, style }) => ({
+	position: "relative",
+	border: `2px solid ${theme.palette.primary.main}`,
+	borderRadius: "10px",
+	backgroundColor: "#ffffff60",
+	fontFamily: "'Acme', sans-serif",
+}));
+
+export const NameMedicineStyled = styled("div")({
+	fontSize: "22px",
+	paddingBottom: "10px",
+});
+
+export const DataMedicineStyled = styled("div")(({ theme, style }) => ({
+	fontSize: "18px",
+	color: theme.palette.primary.main,
 }));

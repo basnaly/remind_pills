@@ -7,9 +7,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 
 import { DialogActions } from "@mui/material";
-import { GrayButton, OrangeButton } from "../styles/MuiStyles";
+import { DialogTitleStyled, GrayButton, OrangeButton } from "../styles/MuiStyles";
 import AddNewMedicalForm from "./AddNewMedicalForm";
-import { AddNewPill } from "../Actions/PillAction";
+import { AddNewPill } from "../Actions/MedicineAction";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
@@ -44,14 +44,14 @@ const AddFormDialog = () => {
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description"
 			>
-				<DialogTitle
+				<DialogTitleStyled
 					id="modal-modal-title"
 					variant="h6"
 					component="h2"
 					className="pb-1 m-1 text-center"
 				>
 					Add a new medicine form
-				</DialogTitle>
+				</DialogTitleStyled>
 
 				<DialogContent className="d-flex align-items-start my-2 overflow-auto">
                     <AddNewMedicalForm />
@@ -67,13 +67,13 @@ const AddFormDialog = () => {
                         Submit
 			        </GrayButton>
 
-					<OrangeButton
+					<GrayButton
 						variant={"outlined"}
 						className="mx-auto mt-0 mb-3"
 						onClick={closeDialog}
 						>
 						Close
-					</OrangeButton>
+					</GrayButton>
 				</DialogActions>
 
 			</Dialog>

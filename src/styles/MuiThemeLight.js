@@ -2,7 +2,13 @@
 export const themeLight = {
     palette: {
         primary: {
-            main: '#ff6600'
+            main: '#ff6600' // orange
+        },
+        secondary: {
+            main: '#000000' // black
+        },
+        third: {
+            main: '#d3d3d3' // lightgray
         }
     },
     components: {

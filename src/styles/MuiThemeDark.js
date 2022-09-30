@@ -2,7 +2,13 @@
 export const themeDark = {
     palette: {
         primary: {
-            main: '#ffff00'
+            main: '#ffff00' // yellow
+        },
+        secondary: {
+            main: '#ffffff' // white
+        },
+        third: {
+            main: '#696969' // dimgray
         }
     },
     components: {

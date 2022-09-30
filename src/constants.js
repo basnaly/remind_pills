@@ -1,6 +1,6 @@
 export const FORM = [
-    'capsule', 'tablet', 'liquid', 'drops', 'creame', 'foam', 'gel', 'lotion', 
-    'injection', 'powder', 'spray'
+    'Capsule', 'Tablet', 'Liquid', 'Drops', 'Creame', 'Foam', 'Gel', 'Lotion', 
+    'Injection', 'Powder', 'Spray'
 ]
 
 export const UNIT = [

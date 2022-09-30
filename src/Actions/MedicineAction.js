@@ -14,6 +14,13 @@ export const ChangeNewMedicineForm = (form) => {
 	}
 }
 
+export const ChangeNewMedicineQuantity = (quantity) => {
+	return {
+		type: "CHANGE_NEW_MEDICINE_QUANTITY",
+		quantity,
+	}
+}
+
 export const ChangeNewMedicineStrength = (strength) => {
 	return {
 		type: "CHANGE_NEW_MEDICINE_STRENGTH",
@@ -28,10 +35,10 @@ export const ChangeNewMedicineUnit = (unit) => {
 	}
 }
 
-export const ChangeNewMedicineAmount = (amount) => {
+export const ChangeNewMedicineAmount = (packAmount) => {
 	return {
-		type: "CHANGE_NEW_MEDICINE_AMOUNT",
-		amount,
+		type: "CHANGE_NEW_MEDICINE_PACK_AMOUNT",
+		packAmount,
 	}
 }
 
@@ -67,12 +74,12 @@ export const AddNewPill = () => {
 
 	return async (dispatch, getState) => {
 
-		const pillData = getState()?.med?.newMedicine;
+		const medicineData = getState()?.med?.newMedicine;
 
 		try {
 			const result = await axios.post(
-				"/pill/create",
-				{ pill: pillData }, // 'trip:' from backend: ...req.body.trip,
+				"/medicine/create",
+				{ medicine: medicineData }, // 'trip:' from backend: ...req.body.trip,
 				// config() // header with access token
 			);
 			console.log(result);
@@ -86,3 +93,26 @@ export const AddNewPill = () => {
 		}
 	};
 };
+
+export const GetListMedicines = () => {
+
+	return async (dispatch, getState) => {
+
+		dispatch({
+			type: "SET_IS_LOADING_LIST_MEDICINES",
+			isLoadingListMedicines: true,
+		});
+
+		try {
+			const result = await axios.get("/medicine/list-medicines")
+			let listMedicines = result?.data?.listMedicines;
+
+			dispatch({
+				type: "LOADED_LIST_MEDICINES",
+				listMedicines
+			});
+		} catch (error) {
+			console.log(error)
+		}
+	}
+}
