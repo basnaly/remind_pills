@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ChangeNewMedicineAmount, ChangeNewMedicineForm, 
-	ChangeNewMedicineFrequency, ChangeNewMedicineInterval, 
-	ChangeNewMedicineName, ChangeNewMedicineNote, 
-	ChangeNewMedicineQuantity, ChangeNewMedicineStrength, 
-	ChangeNewMedicineUnit, ChangeNewMedicineWeekDay } 
-	from "../Actions/MedicineAction";
+import {
+	ChangeNewMedicineAmount,
+	ChangeNewMedicineForm,
+	ChangeNewMedicineFrequency,
+	ChangeNewMedicineInterval,
+	ChangeNewMedicineName,
+	ChangeNewMedicineNote,
+	ChangeNewMedicineQuantity,
+	ChangeNewMedicineStrength,
+	ChangeNewMedicineTime,
+	ChangeNewMedicineUnit,
+	ChangeNewMedicineWeekDay,
+} from "../Actions/MedicineAction";
 
 import { FORM, FREQUENCY, INTERVAL, UNIT, WEEK_DAYS } from "../constants";
 
@@ -14,79 +21,97 @@ import TextAreaInput from "./InputComponents/TextAreaInput";
 import TextFieldInput from "./InputComponents/TextFieldInput";
 
 const AddNewMedicalForm = () => {
-
+	
 	const dispatch = useDispatch();
 
-	const name = useSelector(state => state?.med?.newMedicine?.name);
-	const setName = newName => dispatch(ChangeNewMedicineName(newName));
+	const name = useSelector((state) => state?.med?.newMedicine?.name);
+	const setName = (newName) => dispatch(ChangeNewMedicineName(newName));
 
-	const form = useSelector(state => state?.med?.newMedicine?.form);
-	const setForm = newForm => dispatch(ChangeNewMedicineForm(newForm));
+	const form = useSelector((state) => state?.med?.newMedicine?.form);
+	const setForm = (newForm) => dispatch(ChangeNewMedicineForm(newForm));
 	const [inputForm, setInputForm] = useState("");
 
-	const quantity = useSelector(state => state?.med?.newMedicine?.quantity);
-	const setQuantity = newQuantity => dispatch(ChangeNewMedicineQuantity(newQuantity));
+	const quantity = useSelector((state) => state?.med?.newMedicine?.quantity);
+	const setQuantity = (newQuantity) =>
+		dispatch(ChangeNewMedicineQuantity(newQuantity));
 
-	const strength = useSelector(state => state?.med?.newMedicine?.strength);
-	const setStrength = newStrength => dispatch(ChangeNewMedicineStrength(newStrength));
+	const strength = useSelector((state) => state?.med?.newMedicine?.strength);
+	const setStrength = (newStrength) =>
+		dispatch(ChangeNewMedicineStrength(newStrength));
 
-	const unit = useSelector(state => state?.med?.newMedicine?.unit);
-	const setUnit = newUnit => dispatch(ChangeNewMedicineUnit(newUnit));
+	const unit = useSelector((state) => state?.med?.newMedicine?.unit);
+	const setUnit = (newUnit) => dispatch(ChangeNewMedicineUnit(newUnit));
 	const [inputUnit, setInputUnit] = useState("");
 
-	const packAmount = useSelector(state => state?.med?.newMedicine?.packAmount);
-	const setPackAmount = newPackAmount => dispatch(ChangeNewMedicineAmount(newPackAmount));
+	const packAmount = useSelector(
+		(state) => state?.med?.newMedicine?.packAmount
+	);
+	const setPackAmount = (newPackAmount) =>
+		dispatch(ChangeNewMedicineAmount(newPackAmount));
 
-	const frequency = useSelector(state => state?.med?.newMedicine?.frequency);
-	const setFrequency = newFrequency => dispatch(ChangeNewMedicineFrequency(newFrequency));
+	const frequency = useSelector(
+		(state) => state?.med?.newMedicine?.frequency
+	);
+	const setFrequency = (newFrequency) =>
+		dispatch(ChangeNewMedicineFrequency(newFrequency));
 	const [inputFrequency, setInputFrequency] = useState("");
 
-	const interval = useSelector(state => state?.med?.newMedicine?.interval);
-	const setInterval = newInterval => dispatch(ChangeNewMedicineInterval(newInterval));
+	const interval = useSelector((state) => state?.med?.newMedicine?.interval);
+	const setInterval = (newInterval) =>
+		dispatch(ChangeNewMedicineInterval(newInterval));
 	const [inputInterval, setInputInterval] = useState("");
 
-	const weekDay = useSelector(state => state?.med?.newMedicine?.weekDay);
-	const setWeekDay = newWeekDay => dispatch(ChangeNewMedicineWeekDay(newWeekDay));
+	const time = useSelector((state) => state?.med?.newMedicine?.time);
+	const setTime = (newTime) => dispatch(ChangeNewMedicineTime(newTime));
+
+	const weekDay = useSelector((state) => state?.med?.newMedicine?.weekDay);
+	const setWeekDay = (newWeekDay) =>
+		dispatch(ChangeNewMedicineWeekDay(newWeekDay));
 	const [inputWeekDay, setInputWeekDay] = useState("");
 
-	const note = useSelector(state => state?.med?.newMedicine?.note);
-	const setNote = newNote => dispatch(ChangeNewMedicineNote(newNote));
+	const note = useSelector((state) => state?.med?.newMedicine?.note);
+	const setNote = (newNote) => dispatch(ChangeNewMedicineNote(newNote));
 
-	let options = (<AutocompleteInput
-		options={INTERVAL}
-		autocompleteLabel={"Interval"}
-		value={interval}
-		setValue={setInterval}
-		inputValue={inputInterval}
-		setInputValue={setInputInterval}
-	/>
-	)
+	let options = (
+		<React.Fragment>
+			<AutocompleteInput
+				options={INTERVAL}
+				autocompleteLabel={"Interval"}
+				value={interval}
+				setValue={setInterval}
+				inputValue={inputInterval}
+				setInputValue={setInputInterval}
+			/>
+			
+		</React.Fragment>
+	);
 
 	if (frequency === FREQUENCY[1]) {
-		options = (<AutocompleteInput
-			options={WEEK_DAYS}
-			autocompleteLabel={"Days of week"}
-			value={weekDay}
-			setValue={setWeekDay}
-			inputValue={inputWeekDay}
-			setInputValue={setInputWeekDay}
-		/>
-		)
+		options = (
+			<React.Fragment>
+				<AutocompleteInput
+					options={WEEK_DAYS}
+					autocompleteLabel={"Days of week"}
+					value={weekDay}
+					setValue={setWeekDay}
+					inputValue={inputWeekDay}
+					setInputValue={setInputWeekDay}
+				/>
+			</React.Fragment>
+		);
 	} else if (frequency === FREQUENCY[2]) {
-		options = ''
+		options = "";
 	}
 
 	return (
 		<div className="d-flex flex-column align-items-center overflow-auto">
-
 			<TextFieldInput
-					textLabel={"Add name"}
-					value={name}
-					setValue={setName}
+				textLabel={"Add name"}
+				value={name}
+				setValue={setName}
 			/>
-			
+
 			<div className="d-flex align-items-center overflow-auto">
-				
 				<AutocompleteInput
 					options={FORM}
 					autocompleteLabel={"Form"}
@@ -103,11 +128,9 @@ const AddNewMedicalForm = () => {
 					type="number"
 					setValue={setQuantity}
 				/>
-
 			</div>
 
 			<div className="d-flex align-items-center overflow-auto">
-
 				<TextFieldInput
 					textLabel={"Strength"}
 					value={strength}
@@ -123,7 +146,6 @@ const AddNewMedicalForm = () => {
 					inputValue={inputUnit}
 					setInputValue={setInputUnit}
 				/>
-
 			</div>
 
 			<TextFieldInput
@@ -134,7 +156,6 @@ const AddNewMedicalForm = () => {
 			/>
 
 			<div className="d-flex align-items-center overflow-auto">
-
 				<AutocompleteInput
 					options={FREQUENCY}
 					autocompleteLabel={"Frequency"}
@@ -146,11 +167,19 @@ const AddNewMedicalForm = () => {
 				/>
 
 				{options}
-			
+			</div>
+
+		<div className="d-flex flex-column align-items-center">
+			<TextFieldInput
+			textLabel={"Add time"}
+			value={time}
+			setValue={setTime}
+			type="time"
+		/>
+
 			</div>
 
 			<TextAreaInput value={note} setValue={setNote} />
-
 		</div>
 	);
 };

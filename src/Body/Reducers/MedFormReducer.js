@@ -10,6 +10,7 @@ const initState = {
         packAmount: '', 
 	    frequency: FREQUENCY[0],
         interval: INTERVAL[0], 
+        time: '00:00',
         weekDay: WEEK_DAYS[0],
         note: '',
     },
@@ -93,6 +94,15 @@ const MedFormReducer = (state = initState, action) => {
                 },
             }
 
+        case "CHANGE_NEW_MEDICINE_TIME":
+            return {
+                ...state,
+                newMedicine: {
+                    ...state.newMedicine,
+                    time: action.time,
+                },
+            }
+
         case "CHANGE_NEW_MEDICINE_WEEK_DAY":
             return {
                 ...state,
@@ -122,6 +132,19 @@ const MedFormReducer = (state = initState, action) => {
                 ...state,
                 listMedicines: action.listMedicines,
                 isLoadingListMedicines: false,
+            }
+
+        case "EDIT_EXISTING_MEDICINE": 
+            const medicineToEdit = state.listMedicines[action.index]
+            return {
+                ...state,
+                newMedicine: {...medicineToEdit},
+            }
+
+        case "CLEAR_DIALOG_CONTENT":
+            return {
+                ...state,
+                newMedicine: {...initState.newMedicine},
             }
 
         default:

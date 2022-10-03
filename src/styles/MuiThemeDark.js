@@ -19,7 +19,7 @@ export const themeDark = {
                 },
                 input: {
                     backgroundColor: 'transparent',
-                    color: 'white',
+                    color: '#ffff00',
                 }
             }
         },
@@ -60,6 +60,7 @@ export const themeDark = {
                     backgroundColor: 'gray',
                     color: 'white',
                     border: '2px solid yellow',
+                    borderRadius: '10px',
                 }
             }
         },

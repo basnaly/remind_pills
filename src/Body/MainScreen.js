@@ -25,8 +25,8 @@ const MainScreen = () => {
 				</StartingDivStyled>
 			) : (
 				<div className="d-flex flex-wrap">
-					{listMedicines.map((el) => (
-						<MedicineBox key={el.id} el={el} />
+					{listMedicines.map((el, index) => (
+						<MedicineBox key={el.id} el={el} index={index}/>
 					))}
 				</div>
 			)}

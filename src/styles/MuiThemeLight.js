@@ -16,7 +16,7 @@ export const themeLight = {
             styleOverrides: {
                 input: {
                     backgroundColor: 'white',
-                    color: 'black',
+                    color: '#ff6600',
                 }
             }
         },
@@ -32,6 +32,14 @@ export const themeLight = {
                 root: {
                     backgroundColor: 'white',
                     color: 'black',     
+                }
+            }
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    border: '2px solid #ff6600',
+                    borderRadius: '10px',
                 }
             }
         },

@@ -9,7 +9,7 @@ import Slide from "@mui/material/Slide";
 import { DialogActions } from "@mui/material";
 import { DialogTitleStyled, GrayButton, OrangeButton } from "../styles/MuiStyles";
 import AddNewMedicalForm from "./AddNewMedicalForm";
-import { AddNewPill } from "../Actions/MedicineAction";
+import { AddNewPill, ClearDialogContent } from "../Actions/MedicineAction";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
@@ -20,7 +20,11 @@ const AddFormDialog = () => {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const openDialog = () => setIsDialogOpen(true);
-    const closeDialog = () => setIsDialogOpen(false);
+    
+	const closeDialog = () => {
+        setIsDialogOpen(false);
+        dispatch(ClearDialogContent());
+    };
 
     const dispatch = useDispatch();
 

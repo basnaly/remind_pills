@@ -56,6 +56,13 @@ export const ChangeNewMedicineInterval = (interval) => {
 	}
 }
 
+export const ChangeNewMedicineTime = (time) => {
+	return {
+		type: "CHANGE_NEW_MEDICINE_TIME",
+		time,
+	}
+}
+
 export const ChangeNewMedicineWeekDay = (weekDay) => {
 	return {
 		type: "CHANGE_NEW_MEDICINE_WEEK_DAY",
@@ -115,4 +122,69 @@ export const GetListMedicines = () => {
 			console.log(error)
 		}
 	}
+}
+
+export const AddNewLog = (medicineId, time) => {
+
+	return async (dispatch, getState) => {
+
+		const logData = {
+			medicineId,
+			date: new Date(),
+			time,
+		};
+
+		try {
+			const result = await axios.post(
+				"/log/create",
+				{ log: logData }, // 'trip:' from backend: ...req.body.trip,
+				// config() // header with access token
+			);
+			//console.log(result);
+            // dispatch(SetAlertMessage(result?.data?.message, 'success'));
+			// dispatch(GetListTrips()); // get updated list trips
+
+		} catch (error) {
+			console.log(error);
+			// dispatch(CheckTokenError(error))
+			// dispatch(SetAlertMessage(error?.response?.data?.message));
+		}
+	};
+};
+
+export const EditExistingMedicine = (index) => {
+	return {
+		type: "EDIT_EXISTING_MEDICINE",
+		index,
+	}
+}
+
+export const ClearDialogContent = () => {
+	return {
+		type: "CLEAR_DIALOG_CONTENT",
+	}
+}
+
+export const SaveEditedMedicine = (medicineId) => {
+
+	return async (dispatch, getState) => {
+
+		const editedMedicineData = getState()?.med?.newMedicine;
+
+		try {
+			const result = await axios.post(
+				`/medicine/edit?medicineId=${medicineId}`,
+				{ medicine: editedMedicineData }, // 'trip:' from backend: ...req.body.trip,
+				// config() // header with access token
+			);
+			console.log(result);
+            // dispatch(SetAlertMessage(result?.data?.message, 'success'));
+			dispatch(GetListMedicines()); // get updated list trips
+
+		} catch (error) {
+			console.log(error);
+			// dispatch(CheckTokenError(error))
+			// dispatch(SetAlertMessage(error?.response?.data?.message));
+		}
+	};
 }

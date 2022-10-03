@@ -1,8 +1,10 @@
 import React from "react";
 import { FREQUENCY } from "../constants";
 import { BoxStyled, DataMedicineStyled, GrayButton, MedBoxButton, NameMedicineStyled, OrangeButton } from "../styles/MuiStyles";
+import EditDialog from "./EditDialog";
+import LogDialog from "./LogDialog";
 
-const MedicineBox = ({ el }) => {
+const MedicineBox = ({ el, index }) => {
 
 	return (
 
@@ -29,21 +31,9 @@ const MedicineBox = ({ el }) => {
 			</DataMedicineStyled>
 
             <div className="d-flex align-items-center m-2">
-                <MedBoxButton
-                    variant={'outlined'}
-                    className=" mx-2" 
-                    //onClick={editTrip}
-                >
-                    Log
-                </MedBoxButton>
+                <LogDialog id={el.id}/>
 
-                <MedBoxButton
-                    variant={'outlined'}
-                    className=" mx-3" 
-                    //onClick={editTrip}
-                >
-                    View
-                </MedBoxButton>
+                <EditDialog medicineId={el.id} index={index}/>
 
                 <MedBoxButton
                     variant={'outlined'}

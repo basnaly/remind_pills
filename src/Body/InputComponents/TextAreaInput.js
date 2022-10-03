@@ -19,7 +19,6 @@ const TextAreaInput = ({ value = "", setValue = "" }) => {
 			onChange={handleChange}
 			style={{
 				backgroundColor: currentTheme.textareaBackground,
-				color: currentTheme.textColor,
 			}}
 		/>
 	);

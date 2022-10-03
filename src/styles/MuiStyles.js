@@ -48,6 +48,7 @@ export const TextareaAutosizeStyled = styled(TextareaAutosize)(({ theme, style }
 	fontFamily: "'Acme', sans-serif",
 	fontSize: "16px",
 	padding: '5px 10px',
+	color: theme.palette.primary.main,
 	"&:focus-visible": {
 		outlineColor: theme.palette.primary.main,
 		outlineWidth: 0,
@@ -55,30 +56,29 @@ export const TextareaAutosizeStyled = styled(TextareaAutosize)(({ theme, style }
     	borderRadius: '5px',
 	},
 	"&::-webkit-input-placeholder": {
-		color: style.color,
+		color: theme.palette.secondary.main,
 	},
 
 	"&:-moz-placeholder": {
-		/* Firefox 18- */ color: style.color,
+		/* Firefox 18- */ color: theme.palette.secondary.main,
 	},
 
 	"&::-moz-placeholder": {
-		/* Firefox 19+ */ color: style.color,
+		/* Firefox 19+ */ color: theme.palette.secondary.main,
 	},
 
 	"&:-ms-input-placeholder": {
-		color: style.color,
+		color: theme.palette.secondary.main,
 	},
 
 	"&::placeholder": {
-		color: style.color,
+		color: theme.palette.secondary.main,
 	},
 }));
 
 export const DialogTitleStyled = styled(DialogTitle)(({ theme, style }) => ({
 	fontFamily: "'Acme', sans-serif",
 	fontSize: "20px",
-	color: theme.palette.primary.main
 }));
 
 export const StartingDivStyled = styled('div')(({ theme, style }) => ({
@@ -104,3 +104,8 @@ export const DataMedicineStyled = styled("div")(({ theme, style }) => ({
 	fontSize: "18px",
 	color: theme.palette.primary.main,
 }));
+
+export const DialogTitleLogStyled = styled(DialogTitle)({
+	fontSize: "22px",
+	fontFamily: "'Acme', sans-serif",
+});
