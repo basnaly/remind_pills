@@ -4,7 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 export const HeaderStyled = styled("div")({
 	backgroundColor: "lightgray",
-	fontSize: "20px",
+	fontSize: "24px",
 	padding: "5px",
 	fontFamily: "'Acme', sans-serif",
 });
@@ -109,3 +109,8 @@ export const DialogTitleLogStyled = styled(DialogTitle)({
 	fontSize: "22px",
 	fontFamily: "'Acme', sans-serif",
 });
+
+// export const TabBoxStyled = styled(Box)({
+// 	fontSize: "26px",
+// 	fontFamily: "'Acme', sans-serif",
+// });

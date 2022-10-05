@@ -43,5 +43,21 @@ export const themeLight = {
                 }
             }
         },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    color: 'black',
+                },        
+            },
+        },
+        MuiTabs: {
+            styleOverrides: {
+                flexContainer: {
+                    backgroundColor: 'bisque',
+                },
+                
+            }
+        },
     }
+    
 }

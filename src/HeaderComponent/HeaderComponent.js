@@ -23,7 +23,7 @@ const HeaderComponent = () => {
 				<ThemeComponent />
 			</div>
 
-			<InsertEmoticonIcon />
+			<InsertEmoticonIcon style={{fontSize: "26px"}}/>
 		</HeaderStyled>
 	);
 };

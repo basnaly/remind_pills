@@ -44,5 +44,22 @@ export const myTheme = {
                 }
             }
         },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    fontFamily: "'Acme', sans-serif",
+                    fontSize: '18px',
+                    textTransform: 'none',              
+                },
+            },
+        },
+        MuiTabs: {
+            styleOverrides: {
+                flexContainer: {
+                    justifyContent: "space-between",
+                },
+                
+            }
+        },
     }
 }

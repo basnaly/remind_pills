@@ -28,7 +28,7 @@ const ThemeComponent = () => {
 				aria-expanded={open ? "true" : undefined}
 				onClick={handleClick}
                 sx={{ textTransform: 'none', 
-                    fontSize: '16px', fontFamily: "'Acme', sans-serif",}}
+                    fontSize: '20px', fontFamily: "'Acme', sans-serif",}}
 				style={{
 					backgroundColor: currentTheme.headerBackgroundColor,
 					color: currentTheme.headerTextColor

@@ -65,7 +65,7 @@ const EditDialog = ( {medicineId, index} ) => {
 				</DialogTitleLogStyled>
 
 				<DialogContent className="pb-3">
-					<AddNewMedicalForm />
+					<AddNewMedicalForm isNew={false} />
 				</DialogContent>
 
 				<DialogActions className="d-flex align-items-center justify-content-center mt-0 mb-3">

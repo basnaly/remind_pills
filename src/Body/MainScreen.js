@@ -31,7 +31,7 @@ const MainScreen = () => {
 				</div>
 			)}
 
-			<AddFormDialog />
+			{/* <AddFormDialog /> */}
 		</div>
 	);
 };

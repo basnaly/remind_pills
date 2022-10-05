@@ -73,5 +73,19 @@ export const themeDark = {
                 }
             }
         },
+        MuiTab: {
+            styleOverrides: {
+                root: {
+                    color: 'white',
+                },      
+            },
+        },
+        MuiTabs: {
+            styleOverrides: {
+                flexContainer: {
+                    backgroundColor: 'black',
+                },    
+            }
+        },
     }
 }

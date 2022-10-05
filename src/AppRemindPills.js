@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { myTheme } from "./styles/MuiTheme";
 import { ThemeProvider } from "@mui/material/styles";
@@ -13,6 +13,7 @@ import { themeLight } from "./styles/MuiThemeLight";
 import { createTheme } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import MainScreen from "./Body/MainScreen";
+import MedicationsScreen from "./Body/MedicationsScreen";
 
 const AppRemindPills = () => {
 
@@ -27,11 +28,11 @@ const AppRemindPills = () => {
                     color: currentTheme.textColor
                 }}
             >
-				<Router>
+				<BrowserRouter>
 					<HeaderComponent />
-
-					<MainScreen />
-				</Router>
+                    <MedicationsScreen />
+					{/* <MainScreen /> */}
+				</BrowserRouter>
 			</div>
 		</ThemeProvider>
 	);
