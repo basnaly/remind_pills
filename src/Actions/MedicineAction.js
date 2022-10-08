@@ -124,34 +124,6 @@ export const GetListMedicines = () => {
 	}
 }
 
-export const AddNewLog = (medicineId, time) => {
-
-	return async (dispatch, getState) => {
-
-		const logData = {
-			medicineId,
-			date: new Date(),
-			time,
-		};
-
-		try {
-			const result = await axios.post(
-				"/log/create",
-				{ log: logData }, // 'trip:' from backend: ...req.body.trip,
-				// config() // header with access token
-			);
-			//console.log(result);
-            // dispatch(SetAlertMessage(result?.data?.message, 'success'));
-			// dispatch(GetListTrips()); // get updated list trips
-
-		} catch (error) {
-			console.log(error);
-			// dispatch(CheckTokenError(error))
-			// dispatch(SetAlertMessage(error?.response?.data?.message));
-		}
-	};
-};
-
 export const EditExistingMedicine = (index) => {
 	return {
 		type: "EDIT_EXISTING_MEDICINE",

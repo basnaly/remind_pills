@@ -110,7 +110,13 @@ export const DialogTitleLogStyled = styled(DialogTitle)({
 	fontFamily: "'Acme', sans-serif",
 });
 
-// export const TabBoxStyled = styled(Box)({
-// 	fontSize: "26px",
-// 	fontFamily: "'Acme', sans-serif",
-// });
+export const LogDateStyled = styled('div')({
+	fontSize: "20px",
+	fontFamily: "'Acme', sans-serif",
+	textDecoration: 'underline',
+});
+
+export const LogMedicineStyled = styled('div')({
+	fontSize: "18px",
+	fontFamily: "'Acme', sans-serif",
+});

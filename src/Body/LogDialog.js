@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AddNewLog } from "../Actions/MedicineAction";
+
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Slide from '@mui/material/Slide';
 import TextFieldInput from "./InputComponents/TextFieldInput";
 import { DialogTitleLogStyled, MedBoxButton } from "../styles/MuiStyles";
+import { AddLog } from "../Actions/LogAction";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
@@ -24,7 +25,7 @@ const LogDialog = ( {id} ) => {
 	const dispatch = useDispatch();
 
 	const SaveLogTime = (id) => {
-		dispatch(AddNewLog(id, time));
+		dispatch(AddLog(id, time));
         setIsDialogOpen(false)
 	};
 

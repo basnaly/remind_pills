@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GetListMedicines } from "../Actions/MedicineAction";
-import { GrayButton, StartingDivStyled } from "../styles/MuiStyles";
-import AddFormDialog from "./AddFormDialog";
+import React from "react";
+import { useSelector } from "react-redux";
+import { StartingDivStyled } from "../styles/MuiStyles";
 import MedicineBox from "./MedicineBox";
 
 const MainScreen = () => {
+
 	const listMedicines = useSelector((state) => state?.med?.listMedicines);
-	const isLoadingListMedicines = useSelector(
-		(state) => state?.med?.isLoadingListMedicines
-	);
-
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(GetListMedicines());
-	}, []);
+	const isLoadingListMedicines = useSelector((state) => state?.med?.isLoadingListMedicines);
 
 	return (
 		<div className="d-flex flex-column align-items-center m-2">
@@ -30,8 +21,6 @@ const MainScreen = () => {
 					))}
 				</div>
 			)}
-
-			{/* <AddFormDialog /> */}
 		</div>
 	);
 };

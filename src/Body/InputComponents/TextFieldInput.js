@@ -7,6 +7,7 @@ const TextFieldInput = ({
 	value = "",
 	setValue = "",
 	type,
+	m = 1
 }) => {
 	
 	const handleChange = (event) => setValue(event.target.value);
@@ -15,7 +16,7 @@ const TextFieldInput = ({
 		<Box
 			component="form"
 			sx={{
-				"& > :not(style)": { m: 1, width: 230 },
+				"& > :not(style)": { m: m, width: 230 },
 			}}
 			noValidate
 			autoComplete="off"

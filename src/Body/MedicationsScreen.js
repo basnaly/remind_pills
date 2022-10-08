@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { TabsContext } from "@mui/base";
 import { Box, Tab } from "@mui/material";
 import TabList from "@mui/lab/TabList";
 
@@ -9,10 +8,8 @@ import {
 	Routes,
 	useLocation,
 	useNavigate,
-	useParams,
 } from "react-router";
-import AddFormDialog from "./AddFormDialog";
-import { useDispatch, useSelector } from "react-redux";
+
 import ArchivedMedicines from "./ArchivedMedicines";
 import LogsCalendar from "./LogsCalendar";
 import { TabContext } from "@mui/lab";
@@ -21,13 +18,7 @@ import AddNewMedicalForm from "./AddNewMedicalForm";
 
 const MedicationsScreen = () => {
 
-    const listMedicines = useSelector(state => state?.med?.listMedicines);
-
 	const location = useLocation(); // {} in URL: localhost:3000
-
-	const params = useParams();
-
-	//const idPath = `/${params.id}/`;
 
 	const [selectedTab, setSelectedTab] = useState(location.pathname.replace("/", "")); //
 
@@ -35,8 +26,6 @@ const MedicationsScreen = () => {
 		setSelectedTab(tab);
 		navigate(tab);
 	};
-
-	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
 

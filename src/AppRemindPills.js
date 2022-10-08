@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { myTheme } from "./styles/MuiTheme";
 import { ThemeProvider } from "@mui/material/styles";
-import AddNewMedicalForm from "./Body/AddNewMedicalForm";
+
 import HeaderComponent from "./HeaderComponent/HeaderComponent";
 import { ThemeContext } from "./styles/ThemeContext";
 
@@ -12,13 +12,21 @@ import { themeLight } from "./styles/MuiThemeLight";
 
 import { createTheme } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
-import MainScreen from "./Body/MainScreen";
+
 import MedicationsScreen from "./Body/MedicationsScreen";
+import { useDispatch } from "react-redux";
+import { GetListMedicines } from "./Actions/MedicineAction";
 
 const AppRemindPills = () => {
 
     const { currentTheme } = useContext(ThemeContext);
     const theme = createTheme(deepmerge(myTheme, currentTheme.isLight ? themeLight : themeDark ));
+
+    const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(GetListMedicines());
+	}, []);
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -31,7 +39,7 @@ const AppRemindPills = () => {
 				<BrowserRouter>
 					<HeaderComponent />
                     <MedicationsScreen />
-					{/* <MainScreen /> */}
+					
 				</BrowserRouter>
 			</div>
 		</ThemeProvider>
