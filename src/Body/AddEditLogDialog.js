@@ -1,52 +1,73 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
+
 import Slide from "@mui/material/Slide";
 
 import { DialogActions } from "@mui/material";
-import { DialogTitleStyled, GrayButton, OrangeButton } from "../styles/MuiStyles";
-import AddNewMedicalForm from "./AddNewMedicalForm";
-import { AddNewPill, ChangeNewMedicineQuantity, ChangeNewMedicineTime, ClearDialogContent } from "../Actions/MedicineAction";
+import {
+	DialogTitleStyled,
+	EditIconStyled,
+	GrayButton,
+	ThemeButton,
+} from "../styles/MuiStyles";
+
 import TextFieldInput from "./InputComponents/TextFieldInput";
-import { AddLog } from "../Actions/LogAction";
+import { AddLog, SaveEditedLog, UpdateLogData } from "../Actions/LogAction";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const EditLogDialog = ({el}) => {
+const AddEditLogDialog = ({ medEl, logEl = {}, isNew = false }) => {
 
-	const form = el.form;
+	const form = medEl?.form;
 
-	const [quantity, setQuantity] = useState(el.quantity);
-	const [time, setTime] = useState(el.time);
+	const [quantity, setQuantity] = useState(logEl?.quantity ?? medEl?.quantity);
+	const [time, setTime] = useState(logEl?.time ?? medEl?.time);
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const openDialog = () => setIsDialogOpen(true);
-    
+	const openDialog = () => setIsDialogOpen(true);
+
 	const closeDialog = () => {
-        setIsDialogOpen(false);
-    };
+		setIsDialogOpen(false);
+	};
 
-	const editLog = () => {
-		dispatch(AddLog(el.id, time, quantity));
-	}
+	const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+	const addEditLog = () => {
+		if (isNew) {
+			dispatch(AddLog(medEl?.id, time, quantity));
+		} else {
+			dispatch(UpdateLogData(logEl?.id, logEl?.medicineId, time, quantity))
+		}
+		closeDialog()
+	};
+
+	const openDialogButton = isNew ? (
+		<ThemeButton
+				variant={"outlined"}
+				className="mx-auto"
+				onClick={openDialog}
+			>
+				Add log
+			</ThemeButton>
+	) : (
+		<EditIconStyled 
+			className="me-2" 
+			onClick={openDialog}
+		/>
+	)
+
 
 	return (
 		<div>
-            <div
-				className="mt-2"
-				onClick={openDialog}
-			>✏️
-			</div>
+			{ openDialogButton }
 
-			<Dialog 
+			<Dialog
 				maxWidth="xl"
 				open={isDialogOpen}
 				TransitionComponent={Transition}
@@ -80,31 +101,28 @@ const EditLogDialog = ({el}) => {
 						type="time"
 						m={2}
 					/>
-
 				</DialogContent>
 
 				<DialogActions className="d-flex align-items-center">
-
-                    <GrayButton 
-                        variant={"outlined"} 
-                        className="mx-auto my-3"
-                        onClick={() => dispatch(editLog())}
-                    >
-                        Save
-			        </GrayButton>
+					<GrayButton
+						variant={"outlined"}
+						className="mx-auto my-3"
+						onClick={addEditLog}
+					>
+						Save
+					</GrayButton>
 
 					<GrayButton
 						variant={"outlined"}
 						className="mx-auto my-3"
 						onClick={closeDialog}
-						>
+					>
 						Close
 					</GrayButton>
 				</DialogActions>
-
 			</Dialog>
 		</div>
 	);
 };
 
-export default EditLogDialog;
+export default AddEditLogDialog;

@@ -23,6 +23,12 @@ const LogReducer = (state = initState, action) => {
                 listLogs: action.listLogs,
                 isLoadingListLogs: false,
             }
+
+        case "SET_SELECTED_LOG_DATE":
+            return {
+                ...state,
+                date: action.date,
+            }
         
         default:
             return state

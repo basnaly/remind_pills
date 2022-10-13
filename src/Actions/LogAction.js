@@ -20,7 +20,7 @@ export const AddLog = (medicineId, time, quantity) => {
 			);
 			console.log(result);
             // dispatch(SetAlertMessage(result?.data?.message, 'success'));
-			// dispatch(GetListTrips()); // get updated list trips
+			dispatch(GetListLogs()); // get updated list trips
 
 		} catch (error) {
 			console.log(error);
@@ -53,7 +53,7 @@ export const GetListLogs = () => {
 	}
 }
 
-export const SaveEditedLog = (logId, medicineId, time, quantity) => {
+export const UpdateLogData = (logId, medicineId, time, quantity) => {
 
 	return async (dispatch, getState) => {
 
@@ -66,7 +66,7 @@ export const SaveEditedLog = (logId, medicineId, time, quantity) => {
 
 		try {
 			const result = await axios.post(
-				`/logs/edit?logId=${logId}`,
+				`/logs/log-data?logId=${logId}`,
 				{ log: logData }, // 'trip:' from backend: ...req.body.trip,
 				// config() // header with access token
 			);
@@ -81,3 +81,32 @@ export const SaveEditedLog = (logId, medicineId, time, quantity) => {
 		}
 	};
 }
+
+export const SetSelectedLogDate = (date) => {
+	return {
+		type: "SET_SELECTED_LOG_DATE",
+		date
+	}
+}
+
+export const DeleteSelectedLog = (logId) => {
+	
+	return async (dispatch, getState) => {
+
+		try {
+			const result = await axios.delete(
+				`/logs/delete-log?logId=${logId}`,
+				//config()
+			);
+            console.log(result.data)
+            //dispatch(SetAlertMessage(result?.data?.message, 'success'));
+			dispatch(GetListLogs()); // get updated list trips
+
+		} catch (error) {
+			console.log(error)
+			//dispatch(CheckTokenError(error))
+            //dispatch(SetAlertMessage(error?.response?.data?.message))
+		}
+	};
+};
+

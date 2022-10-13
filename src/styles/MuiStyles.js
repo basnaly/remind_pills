@@ -1,6 +1,12 @@
 import { DialogTitle, styled, TextareaAutosize } from "@mui/material";
 import { Button, Box } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 export const HeaderStyled = styled("div")({
 	backgroundColor: "lightgray",
@@ -37,6 +43,17 @@ export const MedBoxButton = styled(Button)(({ theme, style }) => ({
 	backgroundColor: theme.palette.third.main,
 	padding: "0 5px",
 	fontFamily: "'Acme', sans-serif",
+}));
+
+export const ThemeButton = styled(Button)(({ theme, style }) => ({
+	textTransform: "none",
+	color: theme.palette.primary.main,
+	border: `1px solid ${theme.palette.secondary.main}`,
+	fontSize: "16px",
+	backgroundColor: theme.palette.third.main,
+	padding: "0 5px",
+	fontFamily: "'Acme', sans-serif",
+	margin: 0
 }));
 
 export const MenuItemStyled = styled(MenuItem)({
@@ -120,3 +137,48 @@ export const LogMedicineStyled = styled('div')({
 	fontSize: "18px",
 	fontFamily: "'Acme', sans-serif",
 });
+
+export const TodaySpanStyled = styled('span')(({ theme, style }) => ({
+	color: theme.palette.primary.main,
+	fontSize: "20px",
+	fontFamily: "'Acme', sans-serif",
+}));
+
+export const ArrowLeftStyled = styled(ArrowCircleLeftIcon)(({ theme, style }) => ({
+	color: theme.palette.primary.main,
+}));
+
+export const ArrowRightStyled = styled(ArrowCircleRightIcon)(({ theme, style }) => ({
+	color: theme.palette.primary.main,
+}));
+
+export const CheckBoxStyled = styled(CheckBoxIcon)(({ theme, style }) => ({
+	color: theme.palette.primary.main,
+}));
+
+export const CheckBoxBlankStyled = styled(CheckBoxOutlineBlankIcon)(({ theme, style }) => ({
+	color: theme.palette.primary.main,
+}));
+
+export const EditIconStyled = styled(EditOutlinedIcon)(({ theme, style }) => ({
+	color: theme.palette.primary.main,
+}));
+
+export const DeleteIconStyled = styled(DeleteOutlineIcon)(({ theme, style }) => ({
+	color: theme.palette.primary.main,
+}));
+
+
+export const BorderAroundStyled = styled('div')(({ theme }) => ({
+	 border: `1px solid ${theme.palette.secondary.main}`
+}));
+
+export const BorderBottomStyled = styled('div')(({ theme, style }) => ({
+	borderBottom: `1px solid ${theme.palette.secondary.main}`,
+}));
+
+export const NameMedStyled = styled('div')(({ theme, style }) => ({
+	fontSize: "20px",
+	// color: theme.palette.primary.main,
+	//textShadow: `1px 1px ${theme.palette.secondary.main}`,
+}));
